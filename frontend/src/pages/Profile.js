@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import icon from './img/icon.jpg';
 import { useNavigate } from 'react-router-dom';
+import blogPic from './img/blog.jpg'
 
 const Profile = () => {
     const [showFriendsList, setShowFriendsList] = useState(false);
@@ -9,6 +10,10 @@ const Profile = () => {
 
     const handleEdit = () => {
         navigate('/edit'); 
+    };
+
+    const handleNew = () => {
+        navigate('/create');
     };
 
     const handleViewFriends = () => {
@@ -86,6 +91,32 @@ const Profile = () => {
                     </div>
                 </div>
             )}
+            <div className='profile-activity'>
+    <h1>Account Activity</h1>
+    <button className="write-new-blog-btn" onClick={handleNew}>Write New Blog</button>
+    <div className='blog-items-container'>
+        <div className='blog-item'>
+            <img src={blogPic} alt="default blog image"/>
+            <h3>TITLE OF BLOG HERE</h3>
+            <button className="edit-blog-btn">Edit Blog</button>
+            <button className="delete-blog-btn">Delete Blog</button>
+        </div>
+        <div className='blog-item'>
+            <img src={blogPic} alt="default blog image"/>
+            <h3>TITLE OF BLOG HERE</h3>
+            <button className="edit-blog-btn">Edit Blog</button>
+            <button className="delete-blog-btn">Delete Blog</button>
+        </div>
+        <div className='blog-item'>
+            <img src={blogPic} alt="default blog image"/>
+            <h2>TITLE OF BLOG HERE</h2>
+            <button className="edit-blog-btn">Edit Blog</button>
+            <button className="delete-blog-btn">Delete Blog</button>
+        </div>
+        
+    </div>
+</div>
+
         </div>
     );
 }

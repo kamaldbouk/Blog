@@ -14,14 +14,14 @@ const Login = () => {
 
 
 
-        if (email.length==0 && pass.length==0){
+        if (email.length===0 && pass.length===0){
             errors.push('All fields are required.')
         }
         else {
-            if (email.length==0){
+            if (email.length===0){
                 errors.push('Please enter your email.')
             }
-            if (pass.length==0){
+            if (pass.length===0){
                 errors.push('Please enter your password.')
             }
         }

@@ -16,11 +16,11 @@ const Register = () => {
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (pass!=confirmPass){
+        if (pass!==confirmPass){
             errors.push('Passwords do not match.');
         }
 
-        if (name.length == 0 || email.length==0 || pass.length==0 || confirmPass.length==0){
+        if (name.length===0 || email.length===0 || pass.length===0 || confirmPass.length===0){
             errors.push('All fields are required.')
         }
 

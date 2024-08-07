@@ -380,9 +380,9 @@ header {
   flex-direction: column;
   align-items: center;
   padding: 50px 20px;
-  background-color: #f9f9f9;
+  background-color: #f1f1f1;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   max-width: 800px;
   margin: 20px auto;
 }
@@ -647,6 +647,7 @@ h2 {
   width: 120px;
   height: 120px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .image-container img {
@@ -721,4 +722,11 @@ h2 {
 
 .cancel-button:hover {
   background-color: #e60000;
+}
+
+.edit-info hr {
+  border: none;
+  height: 1px;
+  background-color: #ddd; 
+  margin: 20px 0;
 }

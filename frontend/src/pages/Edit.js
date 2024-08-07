@@ -27,10 +27,15 @@ const Edit = () => {
                 <input id="file-input" type="file" style={{ display: 'none' }} />
                     <label htmlFor='email'>Email</label>
                     <input type="email" className='email' />
-                    <label htmlFor='pass'>Password</label>
-                    <input type="password" className='pass' />
+                    <label htmlFor='newPass'>New Password</label>
+                    <input type="password" className='newPass' />
+                    <label htmlFor='confirmNew'>Confirm New Password</label>
+                    <input type="password" className='confirmNew' />
                     <label htmlFor='bio'>Biography</label>
                     <input type="text" className='bio' />
+                    <hr/>
+                    <label htmlFor='oldPass'>Confirm Old Password</label>
+                    <input type="password" className='oldPass' />
                     <button type="submit" className="submit-button">Save Changes</button>
                     <button type="button" className="cancel-button" onClick={returnHome}>Cancel</button>
                 </form>

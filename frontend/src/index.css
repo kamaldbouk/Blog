@@ -451,6 +451,8 @@ header {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin: 10px;
+  width: 20%;
 }
 
 .cancel-button {
@@ -752,9 +754,9 @@ h2 {
   width: 100%; 
   box-sizing: border-box; 
   transition: background-color 0.3s ease;
-  margin-bottom: 20px; 
+  margin-bottom: 25px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-
+  margin-top: 15px;
 }
 
 .profile-activity button.write-new-blog-btn:hover {

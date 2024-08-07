@@ -109,7 +109,19 @@ const Profile = () => {
         </div>
         <div className='blog-item'>
             <img src={blogPic} alt="default blog image"/>
-            <h2>TITLE OF BLOG HERE</h2>
+            <h3>TITLE OF BLOG HERE</h3>
+            <button className="edit-blog-btn">Edit Blog</button>
+            <button className="delete-blog-btn">Delete Blog</button>
+        </div>
+        <div className='blog-item'>
+            <img src={blogPic} alt="default blog image"/>
+            <h3>TITLE OF BLOG HERE</h3>
+            <button className="edit-blog-btn">Edit Blog</button>
+            <button className="delete-blog-btn">Delete Blog</button>
+        </div>
+        <div className='blog-item'>
+            <img src={blogPic} alt="default blog image"/>
+            <h3>TITLE OF BLOG HERE</h3>
             <button className="edit-blog-btn">Edit Blog</button>
             <button className="delete-blog-btn">Delete Blog</button>
         </div>

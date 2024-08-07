@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import icon from './img/icon.jpg';
-import friendIcon from './img/icon.jpg'; // Replace with actual path for friend images
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
@@ -28,32 +27,32 @@ const Profile = () => {
                     <div className="friends-list">
                         
                         <div className="friend-item">
-                            <img src={friendIcon} alt="friend" className="friend-image"/>
+                            <img src={icon} alt="friend" className="friend-image"/>
                             <p className="friend-name">Friend Name</p>
                             <button className="btn unfriend-btn">Unfriend</button>
                         </div>
                         <div className="friend-item">
-                            <img src={friendIcon} alt="friend" className="friend-image"/>
+                            <img src={icon} alt="friend" className="friend-image"/>
                             <p className="friend-name">Friend Name</p>
                             <button className="btn unfriend-btn">Unfriend</button>
                         </div>
                         <div className="friend-item">
-                            <img src={friendIcon} alt="friend" className="friend-image"/>
+                            <img src={icon} alt="friend" className="friend-image"/>
                             <p className="friend-name">Friend Name</p>
                             <button className="btn unfriend-btn">Unfriend</button>
                         </div>
                         <div className="friend-item">
-                            <img src={friendIcon} alt="friend" className="friend-image"/>
+                            <img src={icon} alt="friend" className="friend-image"/>
                             <p className="friend-name">Friend Name</p>
                             <button className="btn unfriend-btn">Unfriend</button>
                         </div>
                         <div className="friend-item">
-                            <img src={friendIcon} alt="friend" className="friend-image"/>
+                            <img src={icon} alt="friend" className="friend-image"/>
                             <p className="friend-name">Friend Name</p>
                             <button className="btn unfriend-btn">Unfriend</button>
                         </div>
                         <div className="friend-item">
-                            <img src={friendIcon} alt="friend" className="friend-image"/>
+                            <img src={icon} alt="friend" className="friend-image"/>
                             <p className="friend-name">Friend Name</p>
                             <button className="btn unfriend-btn">Unfriend</button>
                         </div>

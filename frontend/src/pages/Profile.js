@@ -88,6 +88,7 @@ const Profile = () => {
                     <div className='profile-buttons'>
                         <button className="btn edit-btn" onClick={handleEdit}>Edit Account</button>
                         <button className="btn friends-btn" onClick={handleViewFriends}>View Friends List</button>
+                        <button className="logout-btn">Log Out</button>
                     </div>
                 </div>
             )}

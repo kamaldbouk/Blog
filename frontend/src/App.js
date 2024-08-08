@@ -7,6 +7,7 @@ import About from './pages/About';
 import CreateBlog from './components/CreateBlog';
 import Profile from './pages/Profile';
 import Edit from './pages/Edit';
+import Blog from './pages/Blog';
 
 function App() {
   const LocationAwareNavbar = () => {
@@ -27,6 +28,7 @@ function App() {
             <Route path='/create' element={<CreateBlog />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/edit' element={<Edit />} />
+            <Route path='/blog' element={<Blog />} />
           </Routes>
         </div>
       </BrowserRouter>

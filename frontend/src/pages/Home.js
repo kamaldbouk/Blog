@@ -1,5 +1,6 @@
 import blogPic from './img/blog.jpg'
 import { useNavigate } from 'react-router-dom';
+import BlogOutView from '../components/BlogOutView';
 
 const Home = () => {
     
@@ -14,79 +15,18 @@ const Home = () => {
             <div className="popular-container">
                 {/* sort these by number of likes (only top 6) */}
                 <h2>Popular Blogs</h2>
-    
-                <div className="blog-div" onClick={routeBlog}>
-                    <img src={blogPic} alt="Blog" className="blog-image" />
-                    <h3 className="blog-title">Blog Title</h3>
-                    <p className="blog-author">Author Name</p>
-                    <p className="blog-date">Date</p>
-                    <div className="blog-votes">
-                        <span className="upvote-button">▲</span>
-                        <span className="vote-count">123</span>
-                        <span className="downvote-button">▼</span>
-                    </div>
-                </div>
 
-                <div className="blog-div" onClick={routeBlog}>
-                    <img src={blogPic} alt="Blog" className="blog-image" />
-                    <h3 className="blog-title">Blog Title</h3>
-                    <p className="blog-author">Author Name</p>
-                    <p className="blog-date">Date</p>
-                    <div className="blog-votes">
-                        <span className="upvote-button">▲</span>
-                        <span className="vote-count">123</span>
-                        <span className="downvote-button">▼</span>
-                    </div>
-                </div>
+                 {/* {blogs && blogs.map((blog) => (
+                        <BlogOutView />
 
-                <div className="blog-div" onClick={routeBlog}>
-                    <img src={blogPic} alt="Blog" className="blog-image" />
-                    <h3 className="blog-title">Blog Title</h3>
-                    <p className="blog-author">Author Name</p>
-                    <p className="blog-date">Date</p>
-                    <div className="blog-votes">
-                        <span className="upvote-button">▲</span>
-                        <span className="vote-count">123</span>
-                        <span className="downvote-button">▼</span>
-                    </div>
-                </div>
+                    ) )} */}
 
-                <div className="blog-div" onClick={routeBlog}>
-                    <img src={blogPic} alt="Blog" className="blog-image" />
-                    <h3 className="blog-title">Blog Title</h3>
-                    <p className="blog-author">Author Name</p>
-                    <p className="blog-date">Date</p>
-                    <div className="blog-votes">
-                        <span className="upvote-button">▲</span>
-                        <span className="vote-count">123</span>
-                        <span className="downvote-button">▼</span>
-                    </div>
-                </div>
-
-                <div className="blog-div" onClick={routeBlog}>
-                    <img src={blogPic} alt="Blog" className="blog-image" />
-                    <h3 className="blog-title">Blog Title</h3>
-                    <p className="blog-author">Author Name</p>
-                    <p className="blog-date">Date</p>
-                    <div className="blog-votes">
-                        <span className="upvote-button">▲</span>
-                        <span className="vote-count">123</span>
-                        <span className="downvote-button">▼</span>
-                    </div>
-                </div>
-
-                <div className="blog-div" onClick={routeBlog}>
-                    <img src={blogPic} alt="Blog" className="blog-image" />
-                    <h3 className="blog-title">Blog Title</h3>
-                    <p className="blog-author">Author Name</p>
-                    <p className="blog-date">Date</p>
-                    <div className="blog-votes">
-                        <span className="upvote-button">▲</span>
-                        <span className="vote-count">123</span>
-                        <span className="downvote-button">▼</span>
-                    </div>
-                </div>
-
+                <BlogOutView />
+                <BlogOutView />
+                <BlogOutView />
+                <BlogOutView />
+                <BlogOutView />
+                <BlogOutView />
             </div>
 
             <div className="all-container">
@@ -110,89 +50,20 @@ const Home = () => {
                 
                 <div className="blogs-list">
 
-                    <div className="blog-div" onClick={routeBlog}>
-                        <img src={blogPic} alt="Blog" className="blog-image" />
-                        <h3 className="blog-title">Blog Title</h3>
-                        <p className="blog-author">Author Name</p>
-                        <p className="blog-date">Date</p>
-                        <div className="blog-votes">
-                            <span className="upvote-button">▲</span>
-                            <span className="vote-count">123</span>
-                            <span className="downvote-button">▼</span>
-                        </div>
-                    </div>
+                    {/* {blogs && blogs.map((blog) => (
+                        <BlogOutView />
+
+                    ) )} */}
+
+                    <BlogOutView />
+                    <BlogOutView />
+                    <BlogOutView />
+                    <BlogOutView />
+                    <BlogOutView />
+                    <BlogOutView />
+                    <BlogOutView />
+
                     
-                    <div className="blog-div" onClick={routeBlog}>
-                        <img src={blogPic} alt="Blog" className="blog-image" />
-                        <h3 className="blog-title">Blog Title</h3>
-                        <p className="blog-author">Author Name</p>
-                        <p className="blog-date">Date</p>
-                        <div className="blog-votes">
-                            <span className="upvote-button">▲</span>
-                            <span className="vote-count">123</span>
-                            <span className="downvote-button">▼</span>
-                        </div>
-                    </div>
-
-                    <div className="blog-div" onClick={routeBlog}>
-                        <img src={blogPic} alt="Blog" className="blog-image" />
-                        <h3 className="blog-title">Blog Title</h3>
-                        <p className="blog-author">Author Name</p>
-                        <p className="blog-date">Date</p>
-                        <div className="blog-votes">
-                            <span className="upvote-button">▲</span>
-                            <span className="vote-count">123</span>
-                            <span className="downvote-button">▼</span>
-                        </div>
-                    </div>
-
-                    <div className="blog-div" onClick={routeBlog}>
-                        <img src={blogPic} alt="Blog" className="blog-image" />
-                        <h3 className="blog-title">Blog Title</h3>
-                        <p className="blog-author">Author Name</p>
-                        <p className="blog-date">Date</p>
-                        <div className="blog-votes">
-                            <span className="upvote-button">▲</span>
-                            <span className="vote-count">123</span>
-                            <span className="downvote-button">▼</span>
-                        </div>
-                    </div>
-
-                    <div className="blog-div" onClick={routeBlog}>
-                        <img src={blogPic} alt="Blog" className="blog-image" />
-                        <h3 className="blog-title">Blog Title</h3>
-                        <p className="blog-author">Author Name</p>
-                        <p className="blog-date">Date</p>
-                        <div className="blog-votes">
-                            <span className="upvote-button">▲</span>
-                            <span className="vote-count">123</span>
-                            <span className="downvote-button">▼</span>
-                        </div>
-                    </div>
-
-                    <div className="blog-div" onClick={routeBlog}>
-                        <img src={blogPic} alt="Blog" className="blog-image" />
-                        <h3 className="blog-title">Blog Title</h3>
-                        <p className="blog-author">Author Name</p>
-                        <p className="blog-date">Date</p>
-                        <div className="blog-votes">
-                            <span className="upvote-button">▲</span>
-                            <span className="vote-count">123</span>
-                            <span className="downvote-button">▼</span>
-                        </div>
-                    </div>
-
-                    <div className="blog-div" onClick={routeBlog}>
-                        <img src={blogPic} alt="Blog" className="blog-image" />
-                        <h3 className="blog-title">Blog Title</h3>
-                        <p className="blog-author">Author Name</p>
-                        <p className="blog-date">Date</p>
-                        <div className="blog-votes">
-                            <span className="upvote-button">▲</span>
-                            <span className="vote-count">123</span>
-                            <span className="downvote-button">▼</span>
-                        </div>
-                    </div>
                 </div>
                 
 

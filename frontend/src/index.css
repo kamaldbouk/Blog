@@ -699,8 +699,8 @@ h2 {
 
 .friends-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  flex-wrap: wrap; 
+  gap: 15px; 
   justify-content: center;
 }
 
@@ -828,6 +828,10 @@ h2 {
 
 .logout-btn:hover {
   background-color: #b30000;
+}
+
+.back-btn {
+  margin-top: 10px;
 }
 
 @media (max-width: 768px) {
@@ -1550,5 +1554,139 @@ h2 {
   .filter-options {
     margin-left: 0; 
     margin-top: 10px;
+  }
+}
+
+/* Member */
+.member-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  margin-top: 200px;
+}
+
+.member-contents {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.member-contents img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.member-contents h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.profile-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.profile-bio {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.member-contents h3 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.blog-out-view-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.blogs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.blogs-container > * {
+  flex: 1 1 calc(33.333% - 20px);
+  max-width: calc(33.333% - 20px);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  
+  .member-container {
+      padding: 15px;
+      margin-top: 400px;
+  }
+
+  .member-contents img {
+      width: 100px;
+      height: 100px;
+  }
+
+  .member-contents h2 {
+      font-size: 1.5em;
+  }
+
+  .profile-bio {
+      font-size: 0.9em;
+  }
+
+  .member-contents h3 {
+      font-size: 1.3em;
+  }
+
+  .blogs-container > * {
+    flex: 1 1 calc(50% - 20px); 
+    max-width: calc(50% - 20px);
+}
+}
+
+@media (max-width: 480px) {
+  .member-container {
+      padding: 10px;
+  }
+
+  .member-contents img {
+      width: 80px;
+      height: 80px;
+  }
+
+  .member-contents h2 {
+      font-size: 1.2em;
+  }
+
+  .profile-bio {
+      font-size: 0.8em;
+  }
+
+  .member-contents h3 {
+      font-size: 1.1em;
+  }
+
+  .blogs-container > * {
+    flex: 1 1 100%;
+    max-width: 100%;
   }
 }

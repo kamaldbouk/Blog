@@ -12,8 +12,6 @@ const Login = () => {
         let email = document.getElementById('email').value;
         let pass = document.getElementById('password').value;
 
-
-
         if (email.length===0 && pass.length===0){
             errors.push('All fields are required.')
         }

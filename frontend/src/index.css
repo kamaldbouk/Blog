@@ -486,6 +486,7 @@ header {
 }
 
 /* Profile CSS */
+
 .profile-container {
   display: flex;
   max-width: 1200px;
@@ -759,24 +760,10 @@ h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   margin-top: 15px;
 }
+
 .write-new-blog-btn:hover {
   background-color: #218838; 
 }
-
-/* .logout-btn {
-  background-color: #ff0000;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9em;
-  margin-right: 10px;
-}
-
-.logout-btn:hover {
-  background-color: #b30000;
-} */
 
 .logout-btn {
   width: 100%;
@@ -795,7 +782,6 @@ h2 {
 .logout-btn:hover {
   background-color: #b30000;
 }
-
 
 /* Edit CSS */
 
@@ -920,8 +906,6 @@ h2 {
   display: flex;
   flex-direction: column;
 }
-
-
 
 .secondary-text {
   font-size: 0.8em;
@@ -1159,3 +1143,120 @@ h2 {
       width: 100%;
   }
 } 
+
+/* Home CSS */
+
+.home-container {
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto; 
+  margin-top: 200px;
+}
+
+.popular-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.blog-div {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 320px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 10px;
+  cursor: pointer;
+}
+
+.blog-image {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.blog-title {
+  font-size: 1rem;
+  margin: 10px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blog-author,
+.blog-date {
+  font-size: 0.8rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.blog-votes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.upvote-button {
+  cursor: pointer;
+  font-size: 1rem;
+  color: green;
+}
+
+.downvote-button {
+  cursor: pointer;
+  font-size: 1rem;
+  color: red;
+}
+
+.vote-count {
+  font-size: 0.9rem;
+}
+
+.all-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-options {
+  display: flex;
+  align-items: center;
+  margin-left: -50px;
+}
+
+.filter-container h2 {
+  margin: 0; 
+}
+
+.filter-options label {
+  margin-right: 10px;
+}
+
+.filter-options select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+}
+
+.blogs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; 
+}

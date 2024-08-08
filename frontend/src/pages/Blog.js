@@ -43,8 +43,6 @@ const Blog = () => {
                     <span>DISPLAY COMMENTS HERE</span>
                 </p>
             </div>
-            <div className='more-blogs'>
-            </div>
         </div>
     )
 }

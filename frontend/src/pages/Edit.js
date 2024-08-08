@@ -64,8 +64,10 @@ const Edit = () => {
                     <hr/>
                     <label htmlFor='oldPass'>Confirm Old Password</label>
                     <input type="password" className='oldPass' id='oldPass' />
-                    <button type="submit" className="submit-button">Save Changes</button>
-                    <button type="button" className="cancel-button" onClick={returnHome}>Cancel</button>
+                    <div className="button-container">
+                        <button type="submit" className="submit-button">Save Changes</button>
+                        <button type="button" className="cancel-button" onClick={returnHome}>Cancel</button>
+                    </div>
                     {errors.length > 0 && (
                         <div className="error-messages">
                             {errors.map((error, index) => (

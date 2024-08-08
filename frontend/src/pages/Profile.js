@@ -16,6 +16,15 @@ const Profile = () => {
         navigate('/create');
     };
 
+    const handleEditBlog = (event) => {
+        event.stopPropagation();
+        navigate('/editblog');
+    };
+
+    const routeBlog = () => {
+        navigate('/blog'); 
+    };
+
     const handleViewFriends = () => {
         setShowFriendsList(true);
     };
@@ -93,42 +102,20 @@ const Profile = () => {
                 </div>
             )}
             <div className='profile-activity'>
-    <h1>Account Activity</h1>
-    <button className="write-new-blog-btn" onClick={handleNew}>Write New Blog</button>
-    <div className='blog-items-container'>
-        <div className='blog-item'>
-            <img src={blogPic} alt="default blog image"/>
-            <h3>TITLE OF BLOG HERE</h3>
-            <button className="edit-blog-btn">Edit Blog</button>
-            <button className="delete-blog-btn">Delete Blog</button>
-        </div>
-        <div className='blog-item'>
-            <img src={blogPic} alt="default blog image"/>
-            <h3>TITLE OF BLOG HERE</h3>
-            <button className="edit-blog-btn">Edit Blog</button>
-            <button className="delete-blog-btn">Delete Blog</button>
-        </div>
-        <div className='blog-item'>
-            <img src={blogPic} alt="default blog image"/>
-            <h3>TITLE OF BLOG HERE</h3>
-            <button className="edit-blog-btn">Edit Blog</button>
-            <button className="delete-blog-btn">Delete Blog</button>
-        </div>
-        <div className='blog-item'>
-            <img src={blogPic} alt="default blog image"/>
-            <h3>TITLE OF BLOG HERE</h3>
-            <button className="edit-blog-btn">Edit Blog</button>
-            <button className="delete-blog-btn">Delete Blog</button>
-        </div>
-        <div className='blog-item'>
-            <img src={blogPic} alt="default blog image"/>
-            <h3>TITLE OF BLOG HERE</h3>
-            <button className="edit-blog-btn">Edit Blog</button>
-            <button className="delete-blog-btn">Delete Blog</button>
-        </div>
-        
-    </div>
-</div>
+                <h1>Account Activity</h1>
+                <button className="write-new-blog-btn" onClick={handleNew}>Write New Blog</button>
+                <div className='blog-items-container'>
+
+                    <div className='blog-item' onClick={routeBlog}>
+                        <img src={blogPic} alt="default blog image"/>
+                        <h3>TITLE OF BLOG HERE</h3>
+                        <button className="edit-blog-btn" onClick={handleEditBlog}>Edit Blog</button>
+                        <button className="delete-blog-btn">Delete Blog</button>
+                    </div>
+
+                    
+                </div>
+            </div>
 
         </div>
     );

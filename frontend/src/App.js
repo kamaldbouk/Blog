@@ -8,11 +8,12 @@ import CreateBlog from './components/CreateBlog';
 import Profile from './pages/Profile';
 import Edit from './pages/Edit';
 import Blog from './pages/Blog';
+import EditBlog from './pages/EditBlog';
 
 function App() {
   const LocationAwareNavbar = () => {
     const location = useLocation();
-    return !['/login', '/register', '/create', '/profile', '/edit'].includes(location.pathname) ? <Navbar /> : null;
+    return !['/login', '/register', '/create', '/profile', '/edit', '/editblog'].includes(location.pathname) ? <Navbar /> : null;
   };
 
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path='/profile' element={<Profile />} />
             <Route path='/edit' element={<Edit />} />
             <Route path='/blog' element={<Blog />} />
+            <Route path='/editblog' element={<EditBlog />} />
           </Routes>
         </div>
       </BrowserRouter>

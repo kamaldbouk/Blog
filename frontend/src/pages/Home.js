@@ -1,9 +1,23 @@
 import blogPic from './img/blog.jpg'
 import { useNavigate } from 'react-router-dom';
 import BlogOutView from '../components/BlogOutView';
+import { useBlogsContext } from '../hooks/useBlogsContext';
+import { useEffect } from 'react';
 
 const Home = () => {
+    const {blogs, dispatch} = useBlogsContext()
     
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            const response = await fetch('/api/blogs')
+            const json = await response.json()
+
+            if (response.ok){
+                dispatch( {type: 'SET_BLOGS', payload: json})
+            }
+        }
+    })
+
     const navigate = useNavigate();
 
     const routeBlog = () => {

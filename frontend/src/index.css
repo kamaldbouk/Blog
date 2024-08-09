@@ -521,6 +521,7 @@ header {
 .cancel-button {
   background-color: #ff4d4d; 
   color: #fff;
+  margin-top: 10px;
 }
 
 .cancel-button:hover {

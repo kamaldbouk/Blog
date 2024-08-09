@@ -40,15 +40,8 @@ const Home = () => {
 
                  {blogs && blogs.map((blog) => (
                         <BlogOutView key={blog._id} blog={blog}  />
-                        // <p key={blog._id}>{blog.title}</p>
                     ) )}
 
-                {/* <BlogOutView />
-                <BlogOutView />
-                <BlogOutView />
-                <BlogOutView />
-                <BlogOutView />
-                <BlogOutView /> */}
             </div>
 
             <div className="all-container">
@@ -71,21 +64,9 @@ const Home = () => {
                 </div>
                 
                 <div className="blogs-list">
-
-                    {/* {blogs && blogs.map((blog) => (
-                        <BlogOutView />
-
-                    ) )} */}
-
-                    <BlogOutView />
-                    <BlogOutView />
-                    <BlogOutView />
-                    <BlogOutView />
-                    <BlogOutView />
-                    <BlogOutView />
-                    <BlogOutView />
-
-                    
+                    {blogs && blogs.map((blog) => (
+                        <BlogOutView key={blog._id} blog={blog}  />
+                    ) )}
                 </div>
                 
 

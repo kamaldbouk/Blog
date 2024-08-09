@@ -5,7 +5,7 @@ const BlogOutView = ({ blog }) => {
     const navigate = useNavigate();
 
     const routeBlog = () => {
-        navigate('/blog');
+        navigate(`/blog/${blog._id}`);
     };
 
     const title = blog ? blog.title : 'No Title';

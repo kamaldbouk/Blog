@@ -1,7 +1,7 @@
 import blogPic from '../pages/img/blog.jpg'
 import icon from '../pages/img/icon.jpg';
 
-const BlogView = () => {
+const BlogView = ( {blog} ) => {
 
     const upvote = (event) => {
         event.stopPropagation();

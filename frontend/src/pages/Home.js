@@ -1,28 +1,36 @@
-import blogPic from './img/blog.jpg'
-import { useNavigate } from 'react-router-dom';
 import BlogOutView from '../components/BlogOutView';
 import { useBlogsContext } from '../hooks/useBlogsContext';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
-    const {blogs, dispatch} = useBlogsContext()
+
+    const [blogs, setBlogs] = useState(null)
     
     useEffect(() => {
         const fetchBlogs = async () => {
             const response = await fetch('/api/blogs')
             const json = await response.json()
 
-            if (response.ok){
-                dispatch( {type: 'SET_BLOGS', payload: json})
+            if (response.ok) {
+                setBlogs(json)
             }
         }
-    })
+        fetchBlogs()
+    }, [])
 
-    const navigate = useNavigate();
+     
+    // const {blogs, dispatch} = useBlogsContext()
+    
+    // useEffect(() => {
+    //     const fetchBlogs = async () => {
+    //         const response = await fetch('/api/blogs')
+    //         const json = await response.json()
 
-    const routeBlog = () => {
-        navigate('/blog'); 
-    };
+    //         if (response.ok){
+    //             dispatch( {type: 'SET_BLOGS', payload: json})
+    //         }
+    //     }
+    // })
 
     return (
         <div className="home-container">
@@ -30,17 +38,17 @@ const Home = () => {
                 {/* sort these by number of likes (only top 6) */}
                 <h2>Popular Blogs</h2>
 
-                 {/* {blogs && blogs.map((blog) => (
-                        <BlogOutView />
+                 {blogs && blogs.map((blog) => (
+                        <BlogOutView key={blog._id} blog={blog}  />
+                        // <p key={blog._id}>{blog.title}</p>
+                    ) )}
 
-                    ) )} */}
-
+                {/* <BlogOutView />
                 <BlogOutView />
                 <BlogOutView />
                 <BlogOutView />
                 <BlogOutView />
-                <BlogOutView />
-                <BlogOutView />
+                <BlogOutView /> */}
             </div>
 
             <div className="all-container">

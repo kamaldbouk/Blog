@@ -13,6 +13,10 @@ export const blogsReducer = (state, action) => {
                 // this is adding the new one and, ...all other ones
                 blogs: [action.payload, ...state.blogs]
             }
+        case 'DELETE_BLOG':
+            return {
+                blogs: state.blogs.filter((w) => w._id !== action.payload._id)
+              }
         default:
             return state
     }

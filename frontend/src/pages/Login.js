@@ -1,61 +1,186 @@
 import { useState } from 'react';
-import logPic from './img/log-pic.png'; 
+import logPic from './img/log-pic.png';
+import { useLogin } from "../hooks/useLogin";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const [errors, setErrors] = useState([]);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login, error, isLoading } = useLogin();
+  const navigate = useNavigate();
 
-    const [errors, setErrors] = useState([]);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    let errors = [];
 
-    const handleLogin = () => {
-        
-        let errors = [];
-
-        let email = document.getElementById('email').value;
-        let pass = document.getElementById('password').value;
-
-        if (email.length===0 && pass.length===0){
-            errors.push('All fields are required.')
-        }
-        else {
-            if (email.length===0){
-                errors.push('Please enter your email.')
-            }
-            if (pass.length===0){
-                errors.push('Please enter your password.')
-            }
-        }
-
-        setErrors(errors); 
-
+    if (email.length === 0 && password.length === 0) {
+      errors.push('All fields are required.');
+    } else {
+      if (email.length === 0) {
+        errors.push('Please enter your email.');
+      }
+      if (password.length === 0) {
+        errors.push('Please enter your password.');
+      }
     }
 
-    return (
-        <div className="login-container">
-            <div className="login-all">
-                <div className="log-info">
-                    <h1>Welcome back!</h1>
-                    <label htmlFor="email">Email</label>
-                    <input className="email" type="text" id="email" placeholder='Enter your email here...' />
-                    <label htmlFor="password">Password</label>
-                    <input className="password" type="password" id="password" placeholder='Enter your password here...' />
-                    <button onClick={handleLogin}>Login</button>
+    if (errors.length > 0) {
+      setErrors(errors);
+      return; 
+    }
 
-                    {errors.length > 0 && (
-                        <div className="error-messages">
-                            {errors.map((error, index) => (
-                                <p key={index} className="error">{error}</p>
-                            ))}
-                        </div>
-                    )}
+    setErrors([]);
 
-                    <p>Don't have an account? Sign up <a href="/register">here</a>.</p>
-                </div>
+    try {
+      const result = await login(email, password); 
 
-                <div className="log-img">
-                    <img src={logPic} alt="Login illustration" /> 
-                </div>
+      if (result) { 
+        navigate('/home');
+      }
+    } catch (err) {
+      setErrors([err.message]);
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <div className="login-all">
+        <div className="log-info">
+          <h1>Welcome back!</h1>
+          <form className='login' onSubmit={handleLogin}>
+            <label htmlFor="email">Email</label>
+            <input
+              className="email"
+              type="text"
+              id="email"
+              placeholder='Enter your email here...'
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              className="password"
+              type="password"
+              id="password"
+              placeholder='Enter your password here...'
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+            <button disabled={isLoading}>Login</button>
+          </form>
+          {errors.length > 0 && (
+            <div className="error-messages">
+              {errors.map((error, index) => (
+                <p key={index} className="error">{error}</p>
+              ))}
             </div>
+          )}
+          <p>Don't have an account? Sign up <a href="/register">here</a>.</p>
         </div>
-    );
-}
+        <div className="log-img">
+          <img src={logPic} alt="Login illustration" /> 
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Login;
+
+
+// import { useState } from 'react';
+// import logPic from './img/log-pic.png';
+// import { useLogin } from "../hooks/useLogin"
+// import { useNavigate } from 'react-router-dom';
+// import { useAuthContext } from '../context/AuthContext';
+
+// const Login = () => {
+
+//     const [errors, setErrors] = useState([]);
+//     const [email, setEmail] = useState('')
+//     const [password, setPassword] = useState('')
+//     const {login, error, isLoading} = useLogin()
+//     const navigate = useNavigate();
+//     const { user, dispatch } = useAuthContext();
+  
+
+//     const handleLogin = async (e) => {
+//         e.preventDefault();
+//         let errors = [];
+
+//         if (email.length === 0 && password.length === 0) {
+//             errors.push('All fields are required.');
+//         } else {
+//             if (email.length === 0) {
+//                 errors.push('Please enter your email.');
+//             }
+//             if (password.length === 0) {
+//                 errors.push('Please enter your password.');
+//             }
+//         }
+
+//         if (errors.length > 0) {
+//             setErrors(errors);
+//             return; 
+//         }
+
+//         setErrors([]);
+
+//         try {
+//             const response = await fetch('/api/users/login', {
+//                 method: 'POST',
+//                 headers: { 'Content-Type': 'application/json' },
+//                 body: JSON.stringify({ email, password }),
+//             });
+
+//             const result = await response.json();
+
+//             if (!response.ok) {
+//                 throw new Error(result.message || 'Login failed');
+//             }
+//             console.log('Login successful', result);
+
+//             navigate('/home'); 
+
+
+//         } catch (err) {
+//             setErrors([err.message]);
+//         }
+
+//         console.log('Current user:', user); 
+
+//     }
+
+//     return (
+//         <div className="login-container">
+//             <div className="login-all">
+//                 <div className="log-info">
+//                     <h1>Welcome back!</h1>
+//                     <form className='login' onSubmit={handleLogin}>
+//                         <label htmlFor="email">Email</label>
+//                         <input className="email" type="text" id="email" placeholder='Enter your email here...' onChange={(e) => setEmail(e.target.value)} value={email} />
+//                         <label htmlFor="password">Password</label>
+//                         <input className="password" type="password" id="password" placeholder='Enter your password here...' onChange={(e) => setPassword(e.target.value)} value={password} />
+//                         <button disabled={isLoading}>Login</button>
+//                     </form>
+//                     {errors.length > 0 && (
+//                         <div className="error-messages">
+//                             {errors.map((error, index) => (
+//                                 <p key={index} className="error">{error}</p>
+//                             ))}
+//                         </div>
+//                     )}
+
+//                     <p>Don't have an account? Sign up <a href="/register">here</a>.</p>
+//                 </div>
+
+//                 <div className="log-img">
+//                     <img src={logPic} alt="Login illustration" /> 
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// }
+
+// export default Login;

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
@@ -10,8 +10,13 @@ import Edit from './pages/Edit';
 import Blog from './pages/Blog';
 import EditBlog from './pages/EditBlog';
 import Member from './pages/Member';
+import { useAuthContext } from './hooks/useAuthContext'
+import { AuthContextProvider } from './context/AuthContext';
 
 function App() {
+
+  const { user } = useAuthContext()
+
   const LocationAwareNavbar = () => {
     const location = useLocation();
     return !['/login', '/register', '/create', '/profile', '/edit', '/editblog'].includes(location.pathname) ? <Navbar /> : null;
@@ -20,21 +25,23 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <LocationAwareNavbar />
-        <div className="pages">
-          <Routes>
-            <Route path='/home' element={<Home />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/create' element={<Create />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/edit' element={<Edit />} />
-            <Route path="/blog/:id" element={<Blog />} />
-            <Route path='/editblog' element={<EditBlog />} />
-            <Route path='/member' element={<Member />} />
-          </Routes>
-        </div>
+        <AuthContextProvider>
+          <LocationAwareNavbar />
+          <div className="pages">
+            <Routes>
+              <Route path='/home' element={<Home />} />
+              <Route path='/about' element={<About />} />
+              <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />}  />
+              <Route path='/register' element={!user ? <Register /> : <Navigate to="/" />}  />
+              <Route path='/create' element={<Create />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/edit' element={<Edit />} />
+              <Route path="/blog/:id" element={<Blog />} />
+              <Route path='/editblog' element={<EditBlog />} />
+              <Route path='/member' element={<Member />} />
+            </Routes>
+          </div>
+        </AuthContextProvider>
       </BrowserRouter>
     </div>
   );

@@ -1,6 +1,7 @@
 import icon from '../pages/img/icon.jpg';
 
 const PersonalProfile = ({ handleEdit, handleViewFriends }) => {
+
     return (
         <div className="profile-settings">
             <div className="redirection">
@@ -24,7 +25,6 @@ const PersonalProfile = ({ handleEdit, handleViewFriends }) => {
             <div className='profile-buttons'>
                 <button className="btn edit-btn" onClick={handleEdit}>Edit Account</button>
                 <button className="btn friends-btn" onClick={handleViewFriends}>View Friends List</button>
-                <button className="logout-btn">Log Out</button>
             </div>
         </div>
     )

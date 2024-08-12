@@ -1,36 +1,49 @@
 import BlogOutView from '../components/BlogOutView';
 import { useBlogsContext } from '../hooks/useBlogsContext';
 import { useEffect, useState } from 'react';
+import { useAuthContext } from "../hooks/useAuthContext"
+
 
 const Home = () => {
+     
+    const {blogs, dispatch} = useBlogsContext()
+    const {user} = useAuthContext()
 
-    const [blogs, setBlogs] = useState(null)
-    
     useEffect(() => {
         const fetchBlogs = async () => {
-            const response = await fetch('/api/blogs')
-            const json = await response.json()
-
-            if (response.ok) {
-                setBlogs(json)
-            }
-        }
-        fetchBlogs()
-    }, [])
-
-     
-    // const {blogs, dispatch} = useBlogsContext()
+            const headers = user ? { 'Authorization': `Bearer ${user.token}` } : {};
     
+            const response = await fetch('/api/blogs', {
+                headers: headers,
+            });
+
+            const json = await response.json();
+    
+            if (response.ok) {
+                dispatch({ type: 'SET_BLOGS', payload: json });
+            }
+        };
+    
+        fetchBlogs();
+    }, [dispatch, user]);
+    
+    
+    // onlu show blogs when user is defined:
     // useEffect(() => {
     //     const fetchBlogs = async () => {
-    //         const response = await fetch('/api/blogs')
+    //         const response = await fetch('/api/blogs', {
+    //             headers: {'Authorization': `Bearer ${user.token}`},
+    //           })
     //         const json = await response.json()
 
     //         if (response.ok){
     //             dispatch( {type: 'SET_BLOGS', payload: json})
     //         }
     //     }
-    // })
+    //     if (user) {
+    //         fetchBlogs()
+    //     }
+    // }, [dispatch, user])
 
     return (
         <div className="home-container">

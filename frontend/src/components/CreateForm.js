@@ -27,7 +27,7 @@ const CreateForm = () => {
         const response = await fetch ('/api/blogs', {
             method: 'POST',
             body: json.stringify(blog), 
-            headers: { 'Content-type': 'applications/json' }
+            headers: { 'Content-type': 'application/json' }
         })
         const json = await response.json()
 

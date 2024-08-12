@@ -26,10 +26,10 @@ const getblog= async (req,res) => {
 
 //create a blog
 const createblog= async (req,res) => {
-    const {title,author,content,comments,upvotes,downvotes} = req.body
+    const {title,category,description,content,comments,upvotes,downvotes} = req.body
     //add doc to db
     try {
-        const blog= await Blog.create({title,author,content,comments,upvotes,downvotes})
+        const blog= await Blog.create({title,category,description,content,comments,upvotes,downvotes})
         res.status(200).json(blog)
     } catch(error) {
         res.status(400).json({error: error.message})

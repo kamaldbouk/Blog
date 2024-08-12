@@ -1,14 +1,36 @@
-import blogPic from './img/blog.jpg'
-import { useNavigate } from 'react-router-dom';
 import BlogOutView from '../components/BlogOutView';
+import { useBlogsContext } from '../hooks/useBlogsContext';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
-    
-    const navigate = useNavigate();
 
-    const routeBlog = () => {
-        navigate('/blog'); 
-    };
+    const [blogs, setBlogs] = useState(null)
+    
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            const response = await fetch('/api/blogs')
+            const json = await response.json()
+
+            if (response.ok) {
+                setBlogs(json)
+            }
+        }
+        fetchBlogs()
+    }, [])
+
+     
+    // const {blogs, dispatch} = useBlogsContext()
+    
+    // useEffect(() => {
+    //     const fetchBlogs = async () => {
+    //         const response = await fetch('/api/blogs')
+    //         const json = await response.json()
+
+    //         if (response.ok){
+    //             dispatch( {type: 'SET_BLOGS', payload: json})
+    //         }
+    //     }
+    // })
 
     return (
         <div className="home-container">
@@ -16,17 +38,10 @@ const Home = () => {
                 {/* sort these by number of likes (only top 6) */}
                 <h2>Popular Blogs</h2>
 
-                 {/* {blogs && blogs.map((blog) => (
-                        <BlogOutView />
+                 {blogs && blogs.map((blog) => (
+                        <BlogOutView key={blog._id} blog={blog}  />
+                    ) )}
 
-                    ) )} */}
-
-                <BlogOutView />
-                <BlogOutView />
-                <BlogOutView />
-                <BlogOutView />
-                <BlogOutView />
-                <BlogOutView />
             </div>
 
             <div className="all-container">
@@ -49,21 +64,9 @@ const Home = () => {
                 </div>
                 
                 <div className="blogs-list">
-
-                    {/* {blogs && blogs.map((blog) => (
-                        <BlogOutView />
-
-                    ) )} */}
-
-                    <BlogOutView />
-                    <BlogOutView />
-                    <BlogOutView />
-                    <BlogOutView />
-                    <BlogOutView />
-                    <BlogOutView />
-                    <BlogOutView />
-
-                    
+                    {blogs && blogs.map((blog) => (
+                        <BlogOutView key={blog._id} blog={blog}  />
+                    ) )}
                 </div>
                 
 

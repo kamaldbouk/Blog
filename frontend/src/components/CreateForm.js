@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useBlogsContext } from '../hooks/useBlogsContext';
 
 const CreateForm = () => {
 
@@ -8,6 +9,8 @@ const CreateForm = () => {
     const returnHome = () => {
         navigate('/home'); 
     };
+
+    const { dispatch } = useBlogsContext()
 
     const [title, setTitle] = useState('')
     const [cover, setCover] = useState('')
@@ -38,7 +41,9 @@ const CreateForm = () => {
             setDesc('')
             setBlogText('')
             setError(null)
-            console.log('New blog added.')
+            console.log('New blog added.', json)
+
+            dispatch( {type:'CREATE_BLOG', payload: json})
         }
     }
 
@@ -74,7 +79,7 @@ const CreateForm = () => {
                 </div>
             </form>
             <button className="cancel-button" onClick={returnHome} >Cancel</button>
-
+            {error && <div className='error-messages'>{error}</div> }
         </div>
     )
 }

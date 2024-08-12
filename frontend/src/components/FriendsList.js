@@ -10,7 +10,7 @@ const FriendsList = ({ friends, handleBackToProfile }) => {
                     friends.map(friend => (
                         <FriendSingle 
                             key={friend._id} 
-                            name={friend.email} // or other property to display
+                            name={friend.email} 
                         />
                     ))
                 ) : (

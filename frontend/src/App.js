@@ -19,8 +19,19 @@ function App() {
 
   const LocationAwareNavbar = () => {
     const location = useLocation();
-    return !['/login', '/register', '/create', '/profile', '/edit', '/editblog'].includes(location.pathname) ? <Navbar /> : null;
-  };
+    const hideNavbarPaths = [
+        '/login',
+        '/register',
+        '/create',
+        '/profile',
+        '/edit',
+        '/member'
+    ];
+
+    const isPathHidden = hideNavbarPaths.some(path => location.pathname.startsWith(path));
+    
+    return !isPathHidden ? <Navbar /> : null;
+};
 
   return (
     <div className="App">
@@ -37,7 +48,7 @@ function App() {
               <Route path='/profile' element={<Profile />} />
               <Route path='/edit' element={<Edit />} />
               <Route path="/blog/:id" element={<Blog />} />
-              <Route path='/editblog' element={<EditBlog />} />
+              <Route path='/editblog/:id' element={<EditBlog />} />
               <Route path='/member' element={<Member />} />
             </Routes>
           </div>

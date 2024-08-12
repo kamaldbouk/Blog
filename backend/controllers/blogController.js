@@ -25,16 +25,27 @@ const getblog= async (req,res) => {
 }
 
 //create a blog
-const createblog= async (req,res) => {
-    const {title,author,category,description,content,comments,upvotes,downvotes} = req.body
-    //add doc to db
+const createblog = async (req, res) => {
+    const { title, author, category, description, content, comments, upvotes, downvotes } = req.body;
+
     try {
-        const blog= await Blog.create({title,author,category,description,content,comments,upvotes,downvotes})
-        res.status(200).json(blog)
-    } catch(error) {
-        res.status(400).json({error: error.message})
+        const blog = await Blog.create({
+            title,
+            author, 
+            category,
+            description,
+            content,
+            comments,
+            upvotes,
+            downvotes,
+        });
+
+        res.status(200).json(blog);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
     }
-}
+};
+
 
 //edit a blog
 const editblog= async (req,res) => {

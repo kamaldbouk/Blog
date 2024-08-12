@@ -4,14 +4,14 @@ import blogPic from '../pages/img/blog.jpg';
 import icon from '../pages/img/icon.jpg';
 
 const Blog = () => {
-    const { id } = useParams(); // Extract the blog ID from the URL
+    const { id } = useParams(); 
     const [blog, setBlog] = useState(null);
 
     useEffect(() => {
-        // Fetch the blog data based on the ID
+       
         const fetchBlog = async () => {
             try {
-                const response = await fetch(`/api/blogs/${id}`); // Adjust the API endpoint as needed
+                const response = await fetch(`/api/blogs/${id}`); 
                 const data = await response.json();
                 setBlog(data);
             } catch (error) {
@@ -22,8 +22,28 @@ const Blog = () => {
         fetchBlog();
     }, [id]);
 
+    const updateVotes = async (type) => {
+        try {
+            const response = await fetch(`/api/blogs/${id}/${type}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            if (response.ok) {
+                const updatedBlog = await response.json();
+                setBlog(updatedBlog);
+            } else {
+                console.error('Error updating votes:', await response.text());
+            }
+        } catch (error) {
+            console.error('Error updating votes:', error);
+        }
+    };
+
+    const handleUp = () => updateVotes('upvote');
+    const handleDown = () => updateVotes('downvote');
+
     if (!blog) {
-        return <div>Loading...</div>; // Display a loading message while fetching data
+        return <div>Loading...</div>; 
     }
 
     return (
@@ -32,7 +52,7 @@ const Blog = () => {
                 <img src={blogPic} alt='Blog Header'/>
                 <h1>{blog.title}</h1>
                 <h3>Published by: {blog.author} <span className="secondary-text">{blog.createdAt}</span></h3> 
-                <h4>DESC HERE</h4>
+                <h4> {blog.description} </h4>
             </div>
             <div className='blog-info'>
                 <p>{blog.content}</p>
@@ -41,9 +61,9 @@ const Blog = () => {
                 <div className='comment-header'>
                     <h3>Comment Section</h3>
                     <div className="vote-section">
-                        <div className="vote-button upvote"></div>
-                        <div className="vote-count">{blog.upvotes-blog.downvotes}</div>
-                        <div className="vote-button downvote"></div>
+                        <div className="vote-button upvote" onClick={handleUp}></div>
+                        <div className="vote-count">{blog.upvotes - blog.downvotes}</div>
+                        <div className="vote-button downvote" onClick={handleDown}></div>
                     </div>
                 </div>
                 <div className="comment-input-container">

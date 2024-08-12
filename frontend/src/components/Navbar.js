@@ -8,7 +8,6 @@ const Navbar = () => {
   const { logout } = useLogout();
   const navigate = useNavigate();
 
-
   const handleLogout = () => {
     logout()
     dispatch({ type: 'LOGOUT' })

@@ -32,7 +32,7 @@ const loginuser = async (req, res) => {
       // create a token
       const token = createToken(user._id)
   
-      res.status(200).json({email, token})
+      res.status(200).json({name: user.name, email, token})
     } catch (error) {
       res.status(400).json({error: error.message})
     }
@@ -86,6 +86,7 @@ const getfriends = async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
+        console.log("Friends List:", user.friends); // Log the friends array
 
         res.status(200).json(user.friends);
     } catch (error) {

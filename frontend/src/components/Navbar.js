@@ -11,7 +11,7 @@ const Navbar = () => {
   const handleLogout = () => {
     logout()
     dispatch({ type: 'LOGOUT' })
-    navigate('/home')
+    navigate('/Home')
   };
 
   return (

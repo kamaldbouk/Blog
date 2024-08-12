@@ -3,28 +3,40 @@ import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {
   const [error, setError] = useState(null)
-  const [isLoading, setIsLoading] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
   const { dispatch } = useAuthContext()
 
-  const signup = async (email, password) => {
+  const signup = async (name, email, password) => {
     setIsLoading(true)
     setError(null)
 
-    const response = await fetch('/api/user/signup', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ email, password })
-    })
-    const json = await response.json()
+    try {
+      const response = await fetch('/api/users/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+      });
 
-    if (!response.ok) {
-      setIsLoading(false)
-      setError(json.error)
-    }
-    if (response.ok) {
-      localStorage.setItem('user', JSON.stringify(json))
-      dispatch({type: 'LOGIN', payload: json})
-      setIsLoading(false)
+      // Check if the response is JSON
+      const contentType = response.headers.get('Content-Type');
+      if (contentType && contentType.includes('application/json')) {
+        const json = await response.json();
+
+        if (!response.ok) {
+          throw new Error(json.error || 'Signup failed');
+        }
+
+        localStorage.setItem('user', JSON.stringify(json));
+        dispatch({ type: 'LOGIN', payload: json });
+      } else {
+        // Handle unexpected response format
+        const text = await response.text();
+        throw new Error('Unexpected response format: ' + text);
+      }
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
   }
 

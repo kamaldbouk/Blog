@@ -18,6 +18,7 @@ const Blog = () => {
     const [blog, setBlog] = useState(null);
     const [comments, setComments] = useState([]);
     const [commentText, setCommentText] = useState('');
+    const [refresh, setRefresh] = useState(false); // State to control refetch
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -32,7 +33,7 @@ const Blog = () => {
         };
 
         fetchBlog();
-    }, [id]);
+    }, [id, refresh]); // Refetch when `refresh` state changes
 
     const categoryImages = {
         technology: Technology,
@@ -54,8 +55,7 @@ const Blog = () => {
                 method: 'PATCH',
             });
             if (response.ok) {
-                const updatedBlog = await response.json();
-                setBlog(updatedBlog);
+                setRefresh(prev => !prev); // Trigger refetch by toggling `refresh`
             } else {
                 console.error('Failed to upvote');
             }
@@ -70,8 +70,7 @@ const Blog = () => {
                 method: 'PATCH',
             });
             if (response.ok) {
-                const updatedBlog = await response.json();
-                setBlog(updatedBlog);
+                setRefresh(prev => !prev); // Trigger refetch by toggling `refresh`
             } else {
                 console.error('Failed to downvote');
             }
@@ -92,10 +91,8 @@ const Blog = () => {
                 body: JSON.stringify({ name: user?.name || 'Anonymous', text: commentText }),
             });
             if (response.ok) {
-                const updatedBlog = await response.json();
-                setBlog(updatedBlog);
-                setComments(updatedBlog.comments);
                 setCommentText('');
+                setRefresh(prev => !prev); // Trigger refetch by toggling `refresh`
             } else {
                 console.error('Failed to post comment');
             }

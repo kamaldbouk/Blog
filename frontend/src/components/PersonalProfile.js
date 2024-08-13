@@ -1,6 +1,6 @@
 import icon from '../pages/img/icon.jpg';
 
-const PersonalProfile = ({ user, handleViewFriends }) => {
+const PersonalProfile = ({ user }) => {
     console.log('User data:', user);
  
     return (
@@ -23,9 +23,7 @@ const PersonalProfile = ({ user, handleViewFriends }) => {
                     <p>********</p>
                 </div>
             </div>
-            <div className='profile-buttons'>
-                <button className="btn friends-btn" onClick={handleViewFriends}>View Friends List</button>
-            </div>
+            
         </div>
     );
 };

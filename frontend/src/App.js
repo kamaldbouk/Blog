@@ -8,7 +8,6 @@ import Create from './pages/Create';
 import Profile from './pages/Profile';
 import Blog from './pages/Blog';
 import EditBlog from './pages/EditBlog';
-import Member from './pages/Member';
 import { useAuthContext } from './hooks/useAuthContext'
 import { AuthContextProvider } from './context/AuthContext';
 
@@ -47,7 +46,6 @@ function App() {
               <Route path='/profile' element={<Profile />} />
               <Route path="/blog/:id" element={<Blog />} />
               <Route path='/editblog/:id' element={<EditBlog />} />
-              <Route path='/member' element={<Member />} />
             </Routes>
           </div>
         </AuthContextProvider>

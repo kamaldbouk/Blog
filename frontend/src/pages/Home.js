@@ -47,15 +47,14 @@ const Home = () => {
 
     return (
         <div className="home-container">
-            <div className="popular-container">
-                {/* sort these by number of likes (only top 6) */}
+            {/* <div className="popular-container">
                 <h2>Popular Blogs</h2>
 
                  {blogs && blogs.map((blog) => (
                         <BlogOutView key={blog._id} blog={blog}  />
                     ) )}
 
-            </div>
+            </div> */}
 
             <div className="all-container">
                 <div className="filter-container">

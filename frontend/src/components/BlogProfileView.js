@@ -54,7 +54,7 @@ const BlogProfileView = ({ blog }) => {
                 console.error('Failed to delete blog:', json.error);
             } else {
                 console.log('Blog deleted:', json);
-                navigate('/home'); // Redirect to home or refresh the page
+                navigate('/home'); 
             }
         } catch (error) {
             setError('Failed to delete blog.');
@@ -64,7 +64,7 @@ const BlogProfileView = ({ blog }) => {
 
     return (
         <div className='blog-item' onClick={routeBlog}>
-            <img src={imageSrc} alt={category} />
+            <img src={imageSrc} alt={category} className='blog-profile-image'/>
             <h3>{blog.title}</h3>
             <button className="edit-blog-btn" onClick={handleEditBlog}>Edit Blog</button>
             <button className="delete-blog-btn" onClick={handleDeleteBlog}>Delete Blog</button>

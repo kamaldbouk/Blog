@@ -1,13 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useBlogsContext } from '../hooks/useBlogsContext';
+import { useAuthContext } from '../context/AuthContext';
 
 const CreateForm = () => {
     const navigate = useNavigate();
     const { dispatch } = useBlogsContext();
+    const { user } = useAuthContext(); 
 
     const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState(''); 
+    const [author, setAuthor] = useState(user?.name || '');
     const [category, setCategory] = useState('');
     const [description, setDesc] = useState('');
     const [content, setBlogText] = useState('');
@@ -31,7 +33,7 @@ const CreateForm = () => {
                 setError(json.error);
             } else {
                 setTitle('');
-                setAuthor('');
+                setAuthor(user?.name || ''); 
                 setCategory('');
                 setDesc('');
                 setBlogText('');
@@ -39,7 +41,7 @@ const CreateForm = () => {
                 console.log('New blog added.', json);
 
                 dispatch({ type: 'CREATE_BLOG', payload: json });
-                navigate('/home'); // Redirect to home after successful creation
+                navigate('/home'); 
             }
         } catch (error) {
             setError('Failed to create blog.');
@@ -58,13 +60,10 @@ const CreateForm = () => {
                     value={title}
                 />
 
-                <label htmlFor="author">Author</label>
                 <input
-                    type='text'
-                    className='author'
+                    type='hidden'
                     id='author'
-                    onChange={(e) => setAuthor(e.target.value)}
-                    value={author}
+                    value={author} 
                 />
 
                 <label htmlFor="category">Category</label>

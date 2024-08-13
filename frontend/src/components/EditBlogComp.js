@@ -47,7 +47,7 @@ const EditBlogComp = () => {
             });
             const json = await response.json();
             if (response.ok) {
-                navigate(`/blog/${id}`); // Redirect to the updated blog view
+                navigate(`/blog/${id}`); 
             } else {
                 setError(json.error);
             }

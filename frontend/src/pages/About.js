@@ -20,9 +20,9 @@ const About = () => {
                 <div className="staff-heading">
                     <h2>Who are we?</h2>
                 </div>
-                    <p>Welcome to BLOG NAME, your go-to destination for engaging and insightful content! Since our inception in 2009, we’ve been committed to bringing you the latest trends, expert opinions, and valuable information across a range of topics.</p>
-                    <p>At BLOG NAME, we believe in the power of knowledge and its ability to transform lives. Our dedicated team of writers and industry experts works tirelessly to deliver content that is not only informative but also thought-provoking and relevant to our readers.</p>
-                    <p>We’re passionate about technology, lifestyle, and personal growth, and our mission is to provide you with high-quality, reliable, and up-to-date content that keeps you informed and inspired. Whether you’re here to explore new ideas, stay updated on current trends, or simply enjoy a good read, BLOG NAME has something for you.</p>
+                    <p>Welcome to DarGram, your go-to destination for engaging and insightful content! Since our inception in 2009, we’ve been committed to bringing you the latest trends, expert opinions, and valuable information across a range of topics.</p>
+                    <p>At DarGram, we believe in the power of knowledge and its ability to transform lives. Our dedicated team of writers and industry experts works tirelessly to deliver content that is not only informative but also thought-provoking and relevant to our readers.</p>
+                    <p>We’re passionate about technology, lifestyle, and personal growth, and our mission is to provide you with high-quality, reliable, and up-to-date content that keeps you informed and inspired. Whether you’re here to explore new ideas, stay updated on current trends, or simply enjoy a good read, DarGram has something for you.</p>
                     <p>Thank you for being part of our journey. We’re thrilled to have you with us and look forward to bringing you more great content!</p>
                 </div>
             </div>

@@ -37,13 +37,18 @@ const BlogOutView = ({ blog }) => {
     return (
         <div className="blog-div" onClick={routeBlog}>
             <img src={imageSrc} alt={category} className="blog-image" />
-            <h3 className="blog-title">{title}</h3>
-            <p className="blog-author">{author}</p>
-            <p className="blog-date">{date}</p>
-            <div className="blog-votes">
-                <span className="upvote-button">▲</span>
-                <span className="vote-count">123</span>
-                <span className="downvote-button">▼</span>
+            <div className="blog-content">
+                <div className="blog-header1">
+                    <h3 className="blog-title">{title}</h3>
+                    <p className='blog-category'>{category}</p>
+                </div>
+                <p className="blog-author">{author}</p>
+                <p className="blog-date">{date}</p>
+                <div className="blog-votes">
+                    <span className="upvote-button">▲</span>
+                    <span className="vote-count">123</span>
+                    <span className="downvote-button">▼</span>
+                </div>
             </div>
         </div>
     );

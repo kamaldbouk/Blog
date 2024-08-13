@@ -29,7 +29,7 @@ const Profile = () => {
 
     const fetchFriends = async () => {
     try {
-        console.log('User:', user); // Check if user is defined
+        console.log('User:', user); 
         const response = await fetch(`/api/users/${user._id}/friends`);
         if (!response.ok) {
             throw new Error('Error');

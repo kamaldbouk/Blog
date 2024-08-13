@@ -28,7 +28,6 @@ export const BlogContextProvider = ( {children} ) => {
         blogs: null
     })
 
-    // dispatch({type: 'CREATE_BLOG', payload: [{}. {}]})
 
     return (
         <BlogContext.Provider value={{...state, dispatch}}>

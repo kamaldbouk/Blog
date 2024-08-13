@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <header>
       <div className="navbar-container">
-        <h1>BLOG NAME HERE</h1>
+        <h1>DarGram</h1>
         <ul>
           <li><Link to='/Home'>Home</Link></li>
           <li><Link to='/about'>About</Link></li>

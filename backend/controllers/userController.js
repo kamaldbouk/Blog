@@ -94,6 +94,7 @@ const getfriends = async (req, res) => {
     }
 };
 
+
 module.exports = {
     registeruser,
     loginuser,

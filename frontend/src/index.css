@@ -973,7 +973,6 @@ h2 {
   width: 120px;
   height: 120px;
   margin-bottom: 20px;
-  cursor: pointer;
 }
 
 .image-container img {
@@ -981,22 +980,6 @@ h2 {
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-}
-
-.image-container:hover .overlay {
-  opacity: 1;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(128, 128, 128, 0.5); 
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.3s;
 }
 
 .edit-info {
@@ -1036,6 +1019,7 @@ h2 {
   max-width: 200px; 
   box-sizing: border-box; 
   text-align: center;
+  cursor: pointer;
 }
 
 .submit-button {

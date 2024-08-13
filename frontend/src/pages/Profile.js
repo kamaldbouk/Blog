@@ -13,9 +13,6 @@ const Profile = () => {
     const { blogs } = useBlogsContext();
     const { user } = useAuthContext();
 
-    const handleEdit = () => {
-        navigate('/edit'); 
-    };
 
     const handleNew = () => {
         navigate('/create');
@@ -55,7 +52,6 @@ const Profile = () => {
                 <PersonalProfile
                     user={user}
                     handleViewFriends={handleViewFriends}
-                    handleEdit={handleEdit}
                 />
             )}
             <div className='profile-activity'>

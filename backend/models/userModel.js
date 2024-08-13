@@ -70,4 +70,15 @@ userSchema.statics.login = async function(email, password) {
   
     return user
 }
+
+userSchema.statics.updateProfile = async function(userId, updates) {
+    if (updates.password) {
+        const salt = await bcrypt.genSalt(10);
+        updates.password = await bcrypt.hash(updates.password, salt);
+    }
+    
+    return await this.findByIdAndUpdate(userId, updates, { new: true });
+}
+
+
 module.exports = mongoose.model('User', userSchema);

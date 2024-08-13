@@ -6,7 +6,6 @@ import Register from './pages/Register';
 import About from './pages/About';
 import Create from './pages/Create';
 import Profile from './pages/Profile';
-import Edit from './pages/Edit';
 import Blog from './pages/Blog';
 import EditBlog from './pages/EditBlog';
 import Member from './pages/Member';
@@ -46,7 +45,6 @@ function App() {
               <Route path='/register' element={!user ? <Register /> : <Navigate to="/" />}  />
               <Route path='/create' element={<Create />} />
               <Route path='/profile' element={<Profile />} />
-              <Route path='/edit' element={<Edit />} />
               <Route path="/blog/:id" element={<Blog />} />
               <Route path='/editblog/:id' element={<EditBlog />} />
               <Route path='/member' element={<Member />} />

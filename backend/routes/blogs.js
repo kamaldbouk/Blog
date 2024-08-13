@@ -36,4 +36,5 @@ router.patch('/:id/downvote', downvoteblog)
 router.post('/:id/comments', addcommentblog)
 
 
+
 module.exports=router

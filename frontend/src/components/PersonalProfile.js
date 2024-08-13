@@ -1,6 +1,6 @@
 import icon from '../pages/img/icon.jpg';
 
-const PersonalProfile = ({ user, handleEdit, handleViewFriends }) => {
+const PersonalProfile = ({ user, handleViewFriends }) => {
     console.log('User data:', user);
  
     return (
@@ -24,7 +24,6 @@ const PersonalProfile = ({ user, handleEdit, handleViewFriends }) => {
                 </div>
             </div>
             <div className='profile-buttons'>
-                <button className="btn edit-btn" onClick={handleEdit}>Edit Account</button>
                 <button className="btn friends-btn" onClick={handleViewFriends}>View Friends List</button>
             </div>
         </div>

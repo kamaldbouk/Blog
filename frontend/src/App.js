@@ -10,6 +10,7 @@ import Blog from './pages/Blog';
 import EditBlog from './pages/EditBlog';
 import { useAuthContext } from './hooks/useAuthContext'
 import { AuthContextProvider } from './context/AuthContext';
+import Error from './pages/Error';
 
 function App() {
 
@@ -23,7 +24,8 @@ function App() {
         '/create',
         '/profile',
         '/edit',
-        '/member'
+        '/member',
+        '/error'
     ];
 
     const isPathHidden = hideNavbarPaths.some(path => location.pathname.startsWith(path));
@@ -40,12 +42,14 @@ function App() {
             <Routes>
               <Route path='/home' element={<Home />} />
               <Route path='/about' element={<About />} />
-              <Route path="/login" element={!user ? <Login /> : <Navigate to="/login" />}  />
-              <Route path='/register' element={!user ? <Register /> : <Navigate to="/login" />}  />
+              <Route path="/login" element={!user ? <Login /> : <Navigate to="/error" />}  />
+              <Route path='/register' element={!user ? <Register /> : <Navigate to="/error" />}  />
               <Route path='/create' element={<Create />} />
               <Route path='/profile' element={<Profile />} />
               <Route path="/blog/:id" element={<Blog />} />
               <Route path='/editblog/:id' element={<EditBlog />} />
+              <Route path="/" element={<Home />} />
+              <Route path='/error' element={<Error />} />
             </Routes>
           </div>
         </AuthContextProvider>

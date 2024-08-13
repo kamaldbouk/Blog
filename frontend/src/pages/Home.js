@@ -1,67 +1,54 @@
 import BlogOutView from '../components/BlogOutView';
 import { useBlogsContext } from '../hooks/useBlogsContext';
 import { useEffect, useState } from 'react';
-import { useAuthContext } from "../hooks/useAuthContext"
-
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Home = () => {
-     
-    const {blogs, dispatch} = useBlogsContext()
-    const {user} = useAuthContext()
+    const { blogs, dispatch } = useBlogsContext();
+    const { user } = useAuthContext();
+    const [filter, setFilter] = useState(''); 
+    const [filteredBlogs, setFilteredBlogs] = useState([]);
 
     useEffect(() => {
         const fetchBlogs = async () => {
             const headers = user ? { 'Authorization': `Bearer ${user.token}` } : {};
-    
+
             const response = await fetch('/api/blogs', {
                 headers: headers,
             });
 
             const json = await response.json();
-    
+
             if (response.ok) {
                 dispatch({ type: 'SET_BLOGS', payload: json });
             }
         };
-    
+
         fetchBlogs();
     }, [dispatch, user]);
-    
-    
-    // onlu show blogs when user is defined:
-    // useEffect(() => {
-    //     const fetchBlogs = async () => {
-    //         const response = await fetch('/api/blogs', {
-    //             headers: {'Authorization': `Bearer ${user.token}`},
-    //           })
-    //         const json = await response.json()
 
-    //         if (response.ok){
-    //             dispatch( {type: 'SET_BLOGS', payload: json})
-    //         }
-    //     }
-    //     if (user) {
-    //         fetchBlogs()
-    //     }
-    // }, [dispatch, user])
+    useEffect(() => {
+        if (blogs) {
+            if (filter) {
+                setFilteredBlogs(blogs.filter(blog => blog.category === filter));
+            } else {
+                setFilteredBlogs(blogs);
+            }
+        }
+    }, [blogs, filter]);
+
+    const handleFilterChange = (e) => {
+        setFilter(e.target.value);
+    };
 
     return (
         <div className="home-container">
-            {/* <div className="popular-container">
-                <h2>Popular Blogs</h2>
-
-                 {blogs && blogs.map((blog) => (
-                        <BlogOutView key={blog._id} blog={blog}  />
-                    ) )}
-
-            </div> */}
-
             <div className="all-container">
                 <div className="filter-container">
                     <h2>All Blogs</h2>
                     <div className="filter-options">
                         <label htmlFor="filter-select">Filter</label>
-                        <select id="filter-select">
+                        <select id="filter-select" value={filter} onChange={handleFilterChange}>
                             <option value="">Select an option</option>
                             <option value="technology">Technology</option>
                             <option value="lifestyle">Lifestyle</option>
@@ -76,12 +63,10 @@ const Home = () => {
                 </div>
                 
                 <div className="blogs-list">
-                    {blogs && blogs.map((blog) => (
-                        <BlogOutView key={blog._id} blog={blog}  />
-                    ) )}
+                    {filteredBlogs && filteredBlogs.map((blog) => (
+                        <BlogOutView key={blog._id} blog={blog} />
+                    ))}
                 </div>
-                
-
             </div>
         </div>
     );

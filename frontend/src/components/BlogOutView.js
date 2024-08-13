@@ -31,6 +31,7 @@ const BlogOutView = ({ blog }) => {
     const author = blog ? blog.author : 'Unknown Author';
     const date = blog ? new Date(blog.createdAt).toLocaleDateString() : 'Unknown Date';
     const category = blog ? blog.category : 'Other';
+    const votes = blog.upvotes - blog.downvotes;
 
     const imageSrc = categoryImages[category] || DefaultImage;
 
@@ -46,7 +47,7 @@ const BlogOutView = ({ blog }) => {
                 <p className="blog-date">{date}</p>
                 <div className="blog-votes">
                     <span className="upvote-button">▲</span>
-                    <span className="vote-count">123</span>
+                    <span className="vote-count">{votes}</span>
                     <span className="downvote-button">▼</span>
                 </div>
             </div>

@@ -1761,3 +1761,40 @@ h2 {
     max-width: 100%;
   }
 }
+
+/* Error CSS */
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: white;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.error-page img {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px; 
+  margin-bottom: 20px;
+}
+
+.error-page h1 {
+  font-size: 2rem;
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+.error-page a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.error-page a:hover {
+  text-decoration: underline;
+}

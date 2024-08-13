@@ -1256,12 +1256,27 @@ h2 {
   color: #7f8c8d;
 }
 
+.vote-section-container {
+  display: flex;
+  align-items: center;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-right: 10px;
+  border: 1px solid red;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #ffe6e6; 
+  white-space: nowrap;
+}
+
 .vote-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: auto; 
-  margin-right: 20px;
+  margin-left: 10px; 
 }
 
 .vote-button {
@@ -1285,6 +1300,7 @@ h2 {
   color: #333;
   margin: 5px 0;
 }
+
 
 
 @media (max-width: 768px) {

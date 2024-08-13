@@ -10,7 +10,7 @@ export const blogsReducer = (state, action) => {
             }
         case 'CREATE_BLOG':
             return {
-                // this is adding the new one and, ...all other ones
+                // this is adding the new one and, ( ... = everything before)  all other ones
                 blogs: [action.payload, ...state.blogs]
             }
         case 'DELETE_BLOG':

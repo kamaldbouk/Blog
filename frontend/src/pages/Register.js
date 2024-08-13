@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import logPic from './img/log-pic.png'; 
 import { useSignup } from "../hooks/useSignup";
 
@@ -10,7 +10,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const { signup, error, isLoading } = useSignup();
-    const navigate = useNavigate(); // Initialize navigate
+    const navigate = useNavigate(); 
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -34,9 +34,9 @@ const Register = () => {
         if (errors.length === 0) {
             try {
                 await signup(name, email, password);
-                navigate('/home'); // Redirect to the homepage on successful signup
+                navigate('/home'); 
             } catch (error) {
-                // Handle any additional errors here
+               
             }
         }
     }

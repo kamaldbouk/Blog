@@ -17,7 +17,6 @@ export const useSignup = () => {
         body: JSON.stringify({ name, email, password })
       });
 
-      // Check if the response is JSON
       const contentType = response.headers.get('Content-Type');
       if (contentType && contentType.includes('application/json')) {
         const json = await response.json();
@@ -29,7 +28,6 @@ export const useSignup = () => {
         localStorage.setItem('user', JSON.stringify(json));
         dispatch({ type: 'LOGIN', payload: json });
       } else {
-        // Handle unexpected response format
         const text = await response.text();
         throw new Error('Unexpected response format: ' + text);
       }

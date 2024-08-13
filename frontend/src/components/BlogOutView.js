@@ -31,7 +31,7 @@ const BlogOutView = ({ blog }) => {
     const author = blog ? blog.author : 'Unknown Author';
     const date = blog ? new Date(blog.createdAt).toLocaleDateString() : 'Unknown Date';
     const category = blog ? blog.category : 'Other';
-    const votes = blog.upvotes - blog.downvotes;
+    const votes = blog.total;
 
     const imageSrc = categoryImages[category] || DefaultImage;
 

@@ -18,7 +18,8 @@ const Blog = () => {
     const [blog, setBlog] = useState(null);
     const [comments, setComments] = useState([]);
     const [commentText, setCommentText] = useState('');
-    const [refresh, setRefresh] = useState(false); // State to control refetch
+    const [refresh, setRefresh] = useState(false); 
+    const [voteError, setVoteError] = useState(''); 
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -33,7 +34,7 @@ const Blog = () => {
         };
 
         fetchBlog();
-    }, [id, refresh]); // Refetch when `refresh` state changes
+    }, [id, refresh]); 
 
     const categoryImages = {
         technology: Technology,
@@ -50,34 +51,57 @@ const Blog = () => {
     const imageSrc = categoryImages[category] || DefaultImage;
 
     const handleUpvote = async () => {
+        if (!user) {
+            setVoteError('You need to be logged in to vote.');
+            return;
+        }
+    
         try {
             const response = await fetch(`/api/blogs/${id}/upvote`, {
                 method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${user.token}`,
+                },
             });
             if (response.ok) {
-                setRefresh(prev => !prev); // Trigger refetch by toggling `refresh`
+                const updatedBlog = await response.json();
+                setBlog(updatedBlog);
+                setVoteError(''); 
             } else {
-                console.error('Failed to upvote');
+                const errorData = await response.json();
+                setVoteError(errorData.error);
             }
         } catch (error) {
             console.error('Error upvoting:', error);
         }
     };
-
+    
     const handleDownvote = async () => {
+        if (!user) {
+            setVoteError('You need to be logged in to vote.');
+            return;
+        }
+    
         try {
             const response = await fetch(`/api/blogs/${id}/downvote`, {
                 method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${user.token}`,
+                },
             });
             if (response.ok) {
-                setRefresh(prev => !prev); // Trigger refetch by toggling `refresh`
+                const updatedBlog = await response.json();
+                setBlog(updatedBlog);
+                setVoteError(''); 
             } else {
-                console.error('Failed to downvote');
+                const errorData = await response.json();
+                setVoteError(errorData.error); 
             }
         } catch (error) {
             console.error('Error downvoting:', error);
         }
     };
+    
 
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
@@ -87,12 +111,15 @@ const Blog = () => {
         try {
             const response = await fetch(`/api/blogs/${id}/comments`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Authorization': `Bearer ${user.token}`,
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify({ name: user?.name || 'Anonymous', text: commentText }),
             });
             if (response.ok) {
                 setCommentText('');
-                setRefresh(prev => !prev); // Trigger refetch by toggling `refresh`
+                setRefresh(prev => !prev); 
             } else {
                 console.error('Failed to post comment');
             }
@@ -117,15 +144,18 @@ const Blog = () => {
                 <p>{blog.content}</p>
             </div>
             <div className='comment-section'>
-                <div className='comment-header'>
-                    <h3>Comment Section</h3>
+            <div className='comment-header'>
+                <h3>Comment Section</h3>
+                <div className="vote-section-container">
+                    {voteError && <p className="error-message">{voteError}</p>}
                     <div className="vote-section">
                         <div className="vote-button upvote" onClick={handleUpvote}></div>
-                        <div className="vote-count">{blog.upvotes - blog.downvotes}</div>
+                        <div className="vote-count">{blog.total}</div>
                         <div className="vote-button downvote" onClick={handleDownvote}></div>
                     </div>
                 </div>
-                <div className="comment-input-container">
+            </div>
+            <div className="comment-input-container">
                     <img src={icon} alt="icon"/>
                     <form onSubmit={handleCommentSubmit}>
                         <input 

@@ -1,5 +1,4 @@
-import icon from '../pages/img/icon.jpg';
-import FriendSingle from './FriendSingle'
+import FriendSingle from './FriendSingle';
 
 const FriendsList = ({ friends, handleBackToProfile }) => {
     return (
@@ -16,16 +15,10 @@ const FriendsList = ({ friends, handleBackToProfile }) => {
                 ) : (
                     <p>No friends found.</p>
                 )}
-
-                <FriendSingle />
-                <FriendSingle />
-                <FriendSingle />
-                <FriendSingle />
-                <FriendSingle />
             </div>
             <button className="btn back-btn" onClick={handleBackToProfile}>Back to Profile</button>
         </div>
-    )
+    );
 }
 
 export default FriendsList;

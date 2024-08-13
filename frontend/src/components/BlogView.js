@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import blogPic from '../pages/img/blog.jpg';
+import Technology from '../pages/img/Technology.jpg'
+import Lifestyle from '../pages/img/Lifestyle.jpg'
+import Travel from '../pages/img/Travel.jpg'
+import Food from '../pages/img/Food.jpg'
+import Education from '../pages/img/Education.jpg'
+import Health from '../pages/img/Health.jpg'
+import Entertainment from '../pages/img/Entertainment.jpg'
+import Sports from '../pages/img/Sports.jpg'
+import DefaultImage from '../pages/img/blog.jpg';
 import icon from '../pages/img/icon.jpg';
 
 const BlogView = () => {
@@ -21,6 +29,20 @@ const BlogView = () => {
 
         fetchBlog();
     }, [id]);
+
+    const categoryImages = {
+        technology: Technology,
+        lifestyle: Lifestyle,
+        travel: Travel,
+        food: Food,
+        education: Education,
+        health: Health,
+        entertainment: Entertainment,
+        sports: Sports,
+    };
+    const category = blog ? blog.category : 'Other';
+    
+    const imageSrc = categoryImages[category] || DefaultImage;
 
     const handleUpvote = async () => {
         try {
@@ -61,8 +83,8 @@ const BlogView = () => {
     return (
         <div className="blog-container">
             <div className='blog-header'>
-                <img src={blogPic} alt='Blog Header'/>
-                <h1>{blog.title}</h1>
+                <img src={imageSrc} alt='Blog Header'/>
+                <h1>TT{blog.title}</h1>
                 <h3>Published by: {blog.author} <span className="secondary-text">{new Date(blog.createdAt).toLocaleDateString()}</span></h3>
                 <h4>{blog.description}</h4>
             </div>

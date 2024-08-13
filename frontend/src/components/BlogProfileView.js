@@ -1,10 +1,34 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import blogPic from '../pages/img/blog.jpg';
+import Technology from '../pages/img/Technology.jpg'
+import Lifestyle from '../pages/img/Lifestyle.jpg'
+import Travel from '../pages/img/Travel.jpg'
+import Food from '../pages/img/Food.jpg'
+import Education from '../pages/img/Education.jpg'
+import Health from '../pages/img/Health.jpg'
+import Entertainment from '../pages/img/Entertainment.jpg'
+import Sports from '../pages/img/Sports.jpg'
+import DefaultImage from '../pages/img/blog.jpg';
 
 const BlogProfileView = ({ blog }) => {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
+
+    const categoryImages = {
+        technology: Technology,
+        lifestyle: Lifestyle,
+        travel: Travel,
+        food: Food,
+        education: Education,
+        health: Health,
+        entertainment: Entertainment,
+        sports: Sports,
+    };
+
+    const category = blog ? blog.category : 'Other';
+
+    const imageSrc = categoryImages[category] || DefaultImage;
+
 
     const handleEditBlog = (event) => {
         event.stopPropagation();
@@ -40,7 +64,7 @@ const BlogProfileView = ({ blog }) => {
 
     return (
         <div className='blog-item' onClick={routeBlog}>
-            <img src={blogPic} alt="default blog image" />
+            <img src={imageSrc} alt={category} />
             <h3>{blog.title}</h3>
             <button className="edit-blog-btn" onClick={handleEditBlog}>Edit Blog</button>
             <button className="delete-blog-btn" onClick={handleDeleteBlog}>Delete Blog</button>

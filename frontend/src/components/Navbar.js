@@ -19,7 +19,7 @@ const Navbar = () => {
       <div className="navbar-container">
         <h1>BLOG NAME HERE</h1>
         <ul>
-          <li><Link to='/home'>Home</Link></li>
+          <li><Link to='/Home'>Home</Link></li>
           <li><Link to='/about'>About</Link></li>
           {user ? (
             <>

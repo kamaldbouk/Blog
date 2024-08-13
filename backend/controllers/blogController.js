@@ -26,7 +26,7 @@ const getblog= async (req,res) => {
 
 //create a blog
 const createblog = async (req, res) => {
-    const { title, author, category, description, content, comments, upvotes, downvotes } = req.body;
+    const { title, author, category, description, content, comments, total, upvotedBy,downvotedBy } = req.body;
 
     try {
         const blog = await Blog.create({
@@ -36,8 +36,9 @@ const createblog = async (req, res) => {
             description,
             content,
             comments,
-            upvotes,
-            downvotes,
+            total, 
+            upvotedBy,
+            downvotedBy
         });
 
         res.status(200).json(blog);
@@ -82,46 +83,90 @@ const deleteblog= async (req,res) => {
     res.status(200).json(blog)
 }
 
+const jwt = require('jsonwebtoken');
+
+// Function to verify token and extract user ID
+const verifyToken = (req) => {
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+    if (!token) {
+        throw new Error('Authentication required');
+    }
+
+    const decoded = jwt.verify(token, process.env.SECRET);
+    return decoded._id;
+};
+
 //upvote a blog
-const upvoteblog= async (req,res) => {
-    const { id } = req.params;
+const upvoteblog = async (req, res) => {
+    try {
+        const userId = verifyToken(req); // Extract the user ID from the token
+        const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ error: 'No such blog' });
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({ error: 'No such blog' });
+        }
+
+        const blog = await Blog.findById(id);
+        if (!blog) {
+            return res.status(400).json({ error: 'No such blog' });
+        }
+
+        // Check if user has already upvoted
+        if (blog.upvotedBy.includes(userId)) {
+            return res.status(400).json({ error: 'You have already upvoted this blog' });
+        }
+
+        // Remove the user from downvotedBy if they had downvoted previously
+        if (blog.downvotedBy.includes(userId)) {
+            blog.downvotedBy = blog.downvotedBy.filter(user => !user.equals(userId));
+        }
+
+        blog.total += 1;
+        blog.upvotedBy.push(userId);
+
+        await blog.save();
+
+        res.status(200).json(blog);
+    } catch (error) {
+        res.status(401).json({ error: error.message });
     }
-
-    const blog = await Blog.findByIdAndUpdate(
-        { _id: id },
-        { $inc: { upvotes: 1 } }
-    );
-
-    if (!blog) {
-        return res.status(400).json({ error: 'No such blog' });
-    }
-
-    res.status(200).json(blog);
-}
+};
 
 //downvote a blog
-const downvoteblog= async (req,res) => {
-    const { id } = req.params;
+const downvoteblog = async (req, res) => {
+    try {
+        const userId = verifyToken(req); // Extract the user ID from the token
+        const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ error: 'No such blog' });
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({ error: 'No such blog' });
+        }
+
+        const blog = await Blog.findById(id);
+        if (!blog) {
+            return res.status(400).json({ error: 'No such blog' });
+        }
+
+        // Check if user has already downvoted
+        if (blog.downvotedBy.includes(userId)) {
+            return res.status(400).json({ error: 'You have already downvoted this blog' });
+        }
+
+        // Remove the user from upvotedBy if they had upvoted previously
+        if (blog.upvotedBy.includes(userId)) {
+            blog.upvotedBy = blog.upvotedBy.filter(user => !user.equals(userId));
+        }
+        blog.total -= 1;
+        blog.downvotedBy.push(userId);
+
+        await blog.save();
+
+        res.status(200).json(blog);
+    } catch (error) {
+        res.status(401).json({ error: error.message });
     }
+};
 
-    const blog = await Blog.findByIdAndUpdate(
-        { _id: id },
-        { $inc: { downvotes: 1 } }
-    );
-
-    if (!blog) {
-        return res.status(400).json({ error: 'No such blog' });
-    }
-
-    res.status(200).json(blog);
-
-}
 
 //add comment to a blog
 const addcommentblog = async (req, res) => {

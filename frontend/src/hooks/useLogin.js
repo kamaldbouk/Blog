@@ -10,6 +10,12 @@ export const useLogin = () => {
     setIsLoading(true);
     setError(null);
 
+    if (!email || !password) {
+      setError('All fields must be filled');
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch('/api/users/login', {
         method: 'POST',
@@ -20,7 +26,7 @@ export const useLogin = () => {
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.message || 'Login failed');
+        throw new Error(result.error || 'Login failed');
       }
 
       localStorage.setItem('user', JSON.stringify(result));

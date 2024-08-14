@@ -12,9 +12,9 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    let errors = [];
 
-    if (email.length === 0 && password.length === 0) {
+    let errors = [];
+    if (email.length === 0 || password.length === 0) {
       errors.push('All fields are required.');
     } else {
       if (email.length === 0) {
@@ -26,20 +26,17 @@ const Login = () => {
     }
 
     if (errors.length > 0) {
-      setErrors(errors);
       return; 
     }
 
-    setErrors([]);
-
     try {
-      const result = await login(email, password); 
+      const result = await login(email, password);
 
-      if (result) { 
+      if (result) {
         navigate('/home');
       }
     } catch (err) {
-      setErrors([err.message]);
+      console.log('Error from backend')
     }
   };
 
@@ -57,6 +54,7 @@ const Login = () => {
               placeholder='Enter your email here...'
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              required
             />
             <label htmlFor="password">Password</label>
             <input
@@ -66,13 +64,14 @@ const Login = () => {
               placeholder='Enter your password here...'
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              required
             />
             <button disabled={isLoading}>Login</button>
           </form>
-          {errors.length > 0 && (
+          {(error || errors.length > 0) && (
             <div className="error-messages">
-              {errors.map((error, index) => (
-                <p key={index} className="error">{error}</p>
+              {(errors.length > 0 ? errors : [error]).map((msg, index) => (
+                <p key={index} className="error">{msg}</p>
               ))}
             </div>
           )}
@@ -87,3 +86,4 @@ const Login = () => {
 };
 
 export default Login;
+

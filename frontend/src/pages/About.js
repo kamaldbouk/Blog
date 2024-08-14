@@ -1,10 +1,7 @@
 import aboutPic from './img/about.png'; 
-import shot1 from './img/shot1.jpg';
-import shot2 from './img/shot2.jpg';
-import shot3 from './img/shot3.jpg';
-import shot4 from './img/shot4.jpg';
-import shot5 from './img/shot5.jpg';
-import shot6 from './img/shot6.jpg';
+import kamal from './img/kamal.png';
+import mahdi from './img/mahdi.JPG';
+import fadi from './img/fadi.jpg';
 import check from './img/check.png';
 import community from './img/community.png'
 import improve from './img/improve.png'
@@ -33,6 +30,21 @@ const About = () => {
                 </div>
                 <div className="staff-container">
                     <div className="staff-in">
+                        <img src={kamal} alt="Kamal Dbouk" />
+                        <p><strong>Kamal Dbouk</strong></p>
+                        <p><cite>Frontend Developer</cite></p>
+                    </div>
+                    <div className="staff-in">
+                        <img src={mahdi} alt="Mahdi Ajroush" />
+                        <p><strong>Mahdi Ajroush</strong></p>
+                        <p><cite>Backend Developer</cite></p>
+                    </div>
+                    <div className="staff-in">
+                        <img src={fadi} alt="Fadi Omari" />
+                        <p><strong>Fadi Omari</strong></p>
+                        <p><cite>Backend Developer</cite></p>
+                    </div>
+                    {/* <div className="staff-in">
                         <img src={shot1} alt="John Doe" />
                         <p><strong>John Doe</strong></p>
                         <p><cite>Founder</cite></p>
@@ -61,7 +73,7 @@ const About = () => {
                         <img src={shot6} alt="Alex James" />
                         <p><strong>Alex James</strong></p>
                         <p><cite>Product Manager</cite></p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

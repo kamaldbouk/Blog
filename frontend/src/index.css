@@ -292,7 +292,7 @@ header {
   border-radius: 8px; 
   display: flex;
   flex-wrap: wrap;
-  gap: 50px; 
+  gap: 200px; 
   justify-content: center; 
 }
 
@@ -1427,6 +1427,11 @@ h2 {
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease-out;
+}
+
+.blog-div:hover{
+  transform: scale(1.05);
 }
 
 .blog-image {

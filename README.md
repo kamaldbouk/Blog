@@ -11,7 +11,7 @@
 **Tools:**
   * MongoDB (Atlas)
   * Mongoose
-  * Bycrpt.js
+  * Bcrypt
   * JWT
 
 _This application was built using react.js, express.js, node.js, and MongoDB as the database._

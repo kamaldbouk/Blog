@@ -10,6 +10,7 @@
 
 **Tools:**
   * MongoDB (Atlas)
+  * Mongoose
   * Bycrpt.js
   * JWT
 

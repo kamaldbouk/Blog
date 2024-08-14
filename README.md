@@ -13,4 +13,4 @@
   * Bycrpt.js
   * JWT
 
-_This application was built using react.js, express.js, node.js, MongoDB as the database._
+_This application was built using react.js, express.js, node.js, and MongoDB as the database._

@@ -20,6 +20,7 @@ const Blog = () => {
     const [commentText, setCommentText] = useState('');
     const [refresh, setRefresh] = useState(false); 
     const [voteError, setVoteError] = useState(''); 
+    const [commentError, setCommentError] = useState('');
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -101,10 +102,14 @@ const Blog = () => {
             console.error('Error downvoting:', error);
         }
     };
-    
 
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
+
+        if (!user) {
+            setCommentError('You need to be logged in to comment.');
+            return;
+        }
 
         if (commentText.trim() === '') return;
 
@@ -115,11 +120,12 @@ const Blog = () => {
                     'Authorization': `Bearer ${user.token}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name: user?.name || 'Anonymous', text: commentText }),
+                body: JSON.stringify({ name: user.name, text: commentText }),
             });
             if (response.ok) {
                 setCommentText('');
                 setRefresh(prev => !prev); 
+                setCommentError(''); 
             } else {
                 console.error('Failed to post comment');
             }
@@ -144,18 +150,19 @@ const Blog = () => {
                 <p>{blog.content}</p>
             </div>
             <div className='comment-section'>
-            <div className='comment-header'>
-                <h3>Comment Section</h3>
-                <div className="vote-section-container">
-                    {voteError && <p className="error-message">{voteError}</p>}
-                    <div className="vote-section">
-                        <div className="vote-button upvote" onClick={handleUpvote}></div>
-                        <div className="vote-count">{blog.total}</div>
-                        <div className="vote-button downvote" onClick={handleDownvote}></div>
+                <div className='comment-header'>
+                    <h3>Comment Section</h3>
+                    <div className="vote-section-container">
+                        {voteError && <p className="error-message">{voteError}</p>}
+                        <div className="vote-section">
+                            <div className="vote-button upvote" onClick={handleUpvote}></div>
+                            <div className="vote-count">{blog.total}</div>
+                            <div className="vote-button downvote" onClick={handleDownvote}></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="comment-input-container">
+                {commentError && <p className="error-message2">{commentError}</p>}
+                <div className="comment-input-container">
                     <img src={icon} alt="icon"/>
                     <form onSubmit={handleCommentSubmit}>
                         <input 

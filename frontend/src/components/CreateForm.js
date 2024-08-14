@@ -15,8 +15,24 @@ const CreateForm = () => {
     const [content, setBlogText] = useState('');
     const [error, setError] = useState(null);
 
+    const validateFields = () => {
+        if (!title || !category || !description || !content) {
+            return 'All fields are required.';
+        }
+        if (description.length > 300) {
+            return `Description must be less than 300 characters.`;
+        }
+        return null;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const validationError = validateFields();
+        if (validationError) {
+            setError(validationError);
+            return;
+        }
 
         const blog = { title, author, category, description, content };
 
@@ -30,7 +46,7 @@ const CreateForm = () => {
             const json = await response.json();
 
             if (!response.ok) {
-                setError(json.error);
+                setError(json.error || 'Failed to create blog.');
             } else {
                 setTitle('');
                 setAuthor(user?.name || ''); 

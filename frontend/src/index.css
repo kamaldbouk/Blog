@@ -1301,6 +1301,18 @@ h2 {
   margin: 5px 0;
 }
 
+.error-message2 {
+  color: red;
+  font-size: 14px;
+  margin-right: 10px;
+  border: 1px solid red;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #ffe6e6; 
+  white-space: nowrap;
+  width: 25%;
+}
+
 
 
 @media (max-width: 768px) {

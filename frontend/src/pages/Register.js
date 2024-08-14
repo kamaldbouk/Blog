@@ -16,17 +16,26 @@ const Register = () => {
         e.preventDefault();
         let errors = [];
 
+        // Validate that passwords match
         if (password !== confirmPassword) {
             errors.push('Passwords do not match.');
         }
 
+        // Validate that all fields are filled
         if (name.length === 0 || email.length === 0 || password.length === 0 || confirmPassword.length === 0) {
             errors.push('All fields are required.');
         }
 
+        // Validate email format
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
             errors.push('Invalid email address.');
+        }
+
+        // Validate password strength
+        const passwordPattern = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+        if (!passwordPattern.test(password)) {
+            errors.push('Password must be at least 8 characters long, contain at least one uppercase letter, and one special character.');
         }
 
         setErrors(errors);
@@ -36,7 +45,7 @@ const Register = () => {
                 await signup(name, email, password);
                 navigate('/home'); 
             } catch (error) {
-               
+                // Handle the signup error here if needed
             }
         }
     }

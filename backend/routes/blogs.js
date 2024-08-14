@@ -9,13 +9,18 @@ const {
     downvoteblog,
     addcommentblog
 } = require('../controllers/blogController')
+
 const router=express.Router()
+const requireAuth=require("../middleware/requireAuth")
+
 
 //get all blogs
 router.get('/', getblogs)
 
 //get a single blogs
 router.get('/:id', getblog)
+
+router.use(requireAuth)
 
 //create a blog
 router.post('/', createblog)

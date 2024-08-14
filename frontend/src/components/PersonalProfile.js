@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import icon from '../pages/img/icon.jpg';
 
 const PersonalProfile = ({ user }) => {
@@ -6,7 +7,7 @@ const PersonalProfile = ({ user }) => {
     return (
         <div className="profile-settings">
             <div className="redirection">
-                <p><a href='/home'>Home</a> / <a href='/profile'>Profile</a></p>
+                <p><Link to='/Home'>Home</Link> / <Link to='/profile'>Profile</Link></p>
             </div>
             <div className='profile-main-details'>
                 <img src={icon} alt="profile-picture" className="profile-picture"/>

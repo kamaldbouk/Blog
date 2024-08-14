@@ -47,7 +47,7 @@ function App() {
               <Route path='/create' element={user ? <Create /> : <Navigate to="/error" />} />
               <Route path='/profile' element={<Profile />} />
               <Route path="/blog/:id" element={<Blog />} />
-              <Route path='/editblog/:id' element={user ? <EditBlog /> : <Navigate to='/error' /> } />
+              <Route path='/editblog/:id' element={<EditBlog /> } />
               <Route path="/" element={<Home />} />
               <Route path='/error' element={<Error />} />
             </Routes>

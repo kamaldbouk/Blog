@@ -44,7 +44,7 @@ function App() {
               <Route path='/about' element={<About />} />
               <Route path="/login" element={!user ? <Login /> : <Navigate to="/error" />}  />
               <Route path='/register' element={!user ? <Register /> : <Navigate to="/error" />}  />
-              <Route path='/create' element={user ? <Create /> : <Navigate to="/error" />} />
+              <Route path='/create' element={<Create />} />
               <Route path='/profile' element={<Profile />} />
               <Route path="/blog/:id" element={<Blog />} />
               <Route path='/editblog/:id' element={<EditBlog /> } />

@@ -17,4 +17,4 @@
 _This application was built using react.js, express.js, node.js, and MongoDB as the database._
 
 
-![bpmn drawio](https://github.com/user-attachments/assets/79cb0c3b-9507-4699-ad06-7e9d926debb8)
+![bpmn drawio](https://github.com/user-attachments/assets/7a524efb-6059-488b-a7a5-0db82d37bf5e)

@@ -28,11 +28,18 @@ const CreateForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!user?.token) {
+            navigate('/error')
+            setError('Authorization token required');
+            return;
+        }
+
         const validationError = validateFields();
         if (validationError) {
             setError(validationError);
             return;
         }
+
 
         const blog = { title, author, category, description, content };
 
@@ -40,7 +47,10 @@ const CreateForm = () => {
             const response = await fetch('/api/blogs', {
                 method: 'POST',
                 body: JSON.stringify(blog),
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}` 
+                },
             });
 
             const json = await response.json();

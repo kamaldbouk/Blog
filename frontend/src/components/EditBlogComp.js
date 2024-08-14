@@ -1,9 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useAuthContext } from '../context/AuthContext';
 
 const EditBlogComp = () => {
     const { id } = useParams(); 
     const navigate = useNavigate();
+    const { user } = useAuthContext(); 
     
     const [blog, setBlog] = useState(null);
     const [title, setTitle] = useState('');
@@ -13,6 +15,9 @@ const EditBlogComp = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        if (!user?.token){
+            navigate('/error')
+        }
         const fetchBlog = async () => {
             try {
                 const response = await fetch(`/api/blogs/${id}`);
@@ -36,6 +41,11 @@ const EditBlogComp = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!user?.token) {
+            setError('Authorization token required');
+            return;
+        }
         
         const updatedBlog = { title, category, description: description, content: content };
 
@@ -43,7 +53,10 @@ const EditBlogComp = () => {
             const response = await fetch(`/api/blogs/${id}`, {
                 method: 'PATCH',
                 body: JSON.stringify(updatedBlog),
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                },
             });
             const json = await response.json();
             if (response.ok) {
